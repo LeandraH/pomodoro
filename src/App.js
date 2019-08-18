@@ -6,7 +6,7 @@ import './App.css';
 
 const App = () => (
   <div className="App">
-    <Timer />
+    <Timer time={23400} />
     <div className="buttons">
       <StartButton />
       <CancelButton />
