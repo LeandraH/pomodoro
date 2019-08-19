@@ -1,7 +1,7 @@
 import React from 'react';
 
-const CancelButton = () => (
-  <button>Cancel</button>
+const CancelButton = ({ resetTimer }) => (
+  <button onClick={resetTimer}>Cancel</button>
 );
 
 export default CancelButton;
