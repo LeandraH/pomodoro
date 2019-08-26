@@ -42,14 +42,4 @@ describe('shows correct times', () => {
     render(<Timer time={912} />, div);
     expect(div.textContent).toEqual('15:12');
   });
-
-  it('when there are 5 hours left', () => {
-    render(<Timer time={18000} />, div);
-    expect(div.textContent).toEqual('5:00:00');
-  });
-
-  it('when there are 4 hours, 59 minutes and 59 seconds left', () => {
-    render(<Timer time={17999} />, div);
-    expect(div.textContent).toEqual('4:59:59');
-  });
 });
