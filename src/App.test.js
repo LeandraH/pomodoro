@@ -29,6 +29,8 @@ const clickCancelTimer = () => {
 
 const getTimerContent = () => div.querySelector('.show-time').textContent;
 
+const getMessageClass = () => div.querySelector('p').className;
+
 it('renders without crashing', () => {
   render(<App />, div);
 });
@@ -97,4 +99,45 @@ it('starts, cancels, and restarts the timer', () => {
   clickStartTimer();
   jest.advanceTimersByTime(2000);
   expect(getTimerContent()).toEqual('24:58');
+});
+
+it('switches between pomodoroes and breaks in the happy path', () => {
+  render(<App />, div);
+  clickStartTimer();
+  expect(getMessageClass()).toEqual('pomodoro-message');
+  jest.advanceTimersByTime(1500000);
+  expect(getTimerContent()).toEqual('00:00');
+
+  jest.advanceTimersByTime(1000);
+  expect(getTimerContent()).toEqual('05:00');
+  expect(getMessageClass()).toEqual('short-break-message');
+
+  jest.advanceTimersByTime(300000);
+  expect(getTimerContent()).toEqual('00:00');
+
+  // second pomodoro begins
+  jest.advanceTimersByTime(1000);
+  expect(getTimerContent()).toEqual('25:00');
+  expect(getMessageClass()).toEqual('pomodoro-message');
+
+  // third pomodoro begins
+  jest.advanceTimersByTime(1802000);
+  expect(getTimerContent()).toEqual('25:00');
+  expect(getMessageClass()).toEqual('pomodoro-message');
+
+  // fourth pomodoro begins
+  jest.advanceTimersByTime(1802000);
+  expect(getTimerContent()).toEqual('25:00');
+  expect(getMessageClass()).toEqual('pomodoro-message');
+
+  jest.advanceTimersByTime(1501000);
+  expect(getTimerContent()).toEqual('15:00');
+  expect(getMessageClass()).toEqual('long-break-message');
+
+  jest.advanceTimersByTime(900000);
+  expect(getTimerContent()).toEqual('00:00');
+
+  jest.advanceTimersByTime(1000);
+  expect(getTimerContent()).toEqual('25:00');
+  expect(getMessageClass()).toEqual('pomodoro-message');
 });

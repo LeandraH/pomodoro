@@ -66,7 +66,7 @@ class App extends Component {
         currentTimer: 'pomodoro',
         time: this.state.pomodoro,
       });
-    } else if (this.state.pomodoroes < this.state.pomodoroesUntilLongBreak) {
+    } else if (this.state.pomodoroes < this.state.pomodoroesUntilLongBreak - 1) {
       this.setState({
         currentTimer: 'shortBreak',
         time: this.state.shortBreak,
@@ -81,8 +81,19 @@ class App extends Component {
     }
   }
 
+  getMessage() {
+    if (this.state.currentTimer === 'pomodoro') {
+      return <p className="pomodoro-message">You can do it!</p>;
+    } else if (this.state.currentTimer === 'shortBreak') {
+      return <p className="short-break-message">Have a quick break! Maybe look out the window for a minute?</p>;
+    } else {
+      return <p className="long-break-message">Have a longer break! Maybe walk around a bit?</p>;
+    }
+  }
+
   render() {
     return <div className="App">
+      {this.getMessage()}
       <Timer time={this.state.time} />
       <div className="buttons">
         <StartButton startTimer={this.startTimer} pauseTimer={this.pauseTimer} isTimerRunning={this.state.isTimerRunning} />
