@@ -35,66 +35,66 @@ it('renders without crashing', () => {
 
 it('starts the timer', () => {
   render(<App />, div);
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
 
   clickStartTimer();
   jest.advanceTimersByTime(3000);
-  expect(getTimerContent()).toEqual('00:03');
+  expect(getTimerContent()).toEqual('24:57');
 });
 
 it('starts, pauses, and restarts the timer', () => {
   render(<App />, div);
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
 
   clickStartTimer();
   jest.advanceTimersByTime(2000);
-  expect(getTimerContent()).toEqual('00:02');
+  expect(getTimerContent()).toEqual('24:58');
 
   clickStartTimer();
   jest.advanceTimersByTime(2000);
-  expect(getTimerContent()).toEqual('00:02');
+  expect(getTimerContent()).toEqual('24:58');
 
   clickStartTimer();
   jest.advanceTimersByTime(3000);
-  expect(getTimerContent()).toEqual('00:05');
+  expect(getTimerContent()).toEqual('24:55');
 });
 
 it('starts, pauses, cancels, and restarts the timer', () => {
   render(<App />, div);
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
 
   clickStartTimer();
   jest.advanceTimersByTime(1000);
-  expect(getTimerContent()).toEqual('00:01');
+  expect(getTimerContent()).toEqual('24:59');
 
   clickStartTimer();
   jest.advanceTimersByTime(3000);
-  expect(getTimerContent()).toEqual('00:01');
+  expect(getTimerContent()).toEqual('24:59');
 
   clickCancelTimer();
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
   jest.advanceTimersByTime(2000);
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
 
   clickStartTimer();
   jest.advanceTimersByTime(2000);
-  expect(getTimerContent()).toEqual('00:02');
+  expect(getTimerContent()).toEqual('24:58');
 });
 
 it('starts, cancels, and restarts the timer', () => {
   render(<App />, div);
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
 
   clickStartTimer();
   jest.advanceTimersByTime(2000);
-  expect(getTimerContent()).toEqual('00:02');
+  expect(getTimerContent()).toEqual('24:58');
 
   clickCancelTimer();
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
   jest.advanceTimersByTime(1000);
-  expect(getTimerContent()).toEqual('00:00');
+  expect(getTimerContent()).toEqual('25:00');
 
   clickStartTimer();
   jest.advanceTimersByTime(2000);
-  expect(getTimerContent()).toEqual('00:02');
+  expect(getTimerContent()).toEqual('24:58');
 });

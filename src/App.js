@@ -8,10 +8,10 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      time: 0,
-      pomodoro: 15,
-      shortBreak: 10,
-      longBreak: 20,
+      time: 1500,
+      pomodoro: 1500,
+      shortBreak: 300,
+      longBreak: 900,
       isTimerRunning: false,
       intervalId: null,
       currentTimer: 'pomodoro', // other ones: shortBreak, longBreak
@@ -34,8 +34,8 @@ class App extends Component {
     this.setState({
       isTimerRunning: true,
       intervalId: setInterval(() => {
-        if (this.state.time < this.state[this.state.currentTimer]) {
-          this.setState({ time: this.state.time + 1 });
+        if (this.state.time > 0) {
+          this.setState({ time: this.state.time - 1 });
         } else {
           this.switchTimerType();
         }
@@ -54,7 +54,7 @@ class App extends Component {
   resetTimer() {
     this.setState({
       isTimerRunning: false,
-      time: 0,
+      time: this.state.pomodoro,
       currentTimer: 'pomodoro',
     });
     clearInterval(this.state.intervalId);
@@ -64,18 +64,18 @@ class App extends Component {
     if (this.state.currentTimer === 'shortBreak' || this.state.currentTimer === 'longBreak') {
       this.setState({
         currentTimer: 'pomodoro',
-        time: 0,
+        time: this.state.pomodoro,
       });
     } else if (this.state.pomodoroes < this.state.pomodoroesUntilLongBreak) {
       this.setState({
         currentTimer: 'shortBreak',
-        time: 0,
+        time: this.state.shortBreak,
         pomodoroes: this.state.pomodoroes + 1,
       });
     } else {
       this.setState({
         currentTimer: 'longBreak',
-        time: 0,
+        time: this.state.longBreak,
         pomodoroes: 0,
       });
     }
