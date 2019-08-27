@@ -59,13 +59,14 @@ class App extends Component {
   }
 
   startTimer() {
-    const { isTimerRunning, time } = this.state;
+    const { isTimerRunning } = this.state;
     if (isTimerRunning) {
       return;
     }
     this.setState({
       isTimerRunning: true,
       intervalId: setInterval(() => {
+        const { time } = this.state;
         if (time > 0) {
           this.setState({ time: time - 1 });
         } else {
