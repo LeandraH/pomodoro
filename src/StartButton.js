@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const StartButton = ({ startTimer, pauseTimer, isTimerRunning }) => (
-  <button className="start-button" onClick={isTimerRunning ? pauseTimer : startTimer}>{isTimerRunning ? 'Pause' : 'Start'}</button>
+  <button type="button" className="start-button" onClick={isTimerRunning ? pauseTimer : startTimer}>{isTimerRunning ? 'Pause' : 'Start'}</button>
 );
 
 export default StartButton;
