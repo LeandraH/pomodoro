@@ -105,14 +105,21 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">
-      {this.getMessage()}
-      <Timer time={this.state.time} />
-      <div className="buttons">
-        <StartButton startTimer={this.startTimer} pauseTimer={this.pauseTimer} isTimerRunning={this.state.isTimerRunning} />
-        <CancelButton resetTimer={this.resetTimer} />
+    const { time, isTimerRunning } = this.state;
+    return (
+      <div className="App">
+        {this.getMessage()}
+        <Timer time={time} />
+        <div className="buttons">
+          <StartButton
+            startTimer={this.startTimer}
+            pauseTimer={this.pauseTimer}
+            isTimerRunning={isTimerRunning}
+          />
+          <CancelButton resetTimer={this.resetTimer} />
+        </div>
       </div>
-    </div>;
+    );
   }
 }
 
