@@ -32,11 +32,11 @@ class App extends Component {
     const { currentTimer } = this.state;
     if (currentTimer === 'pomodoro') {
       return <p className="pomodoro-message">You can do it!</p>;
-    } else if (currentTimer === 'shortBreak') {
-      return <p className="short-break-message">Have a quick break! Maybe look out the window for a minute?</p>;
-    } else {
-      return <p className="long-break-message">Have a longer break! Maybe walk around a bit?</p>;
     }
+    if (currentTimer === 'shortBreak') {
+      return <p className="short-break-message">Have a quick break! Maybe look out the window for a minute?</p>;
+    }
+    return <p className="long-break-message">Have a longer break! Maybe walk around a bit?</p>;
   }
 
   pauseTimer() {
