@@ -14,10 +14,15 @@ afterEach(() => {
 });
 
 it('renders without crashing', () => {
-  render(<Timer />, div);
+  render(<Timer time={0} />, div);
 });
 
 describe('shows correct times', () => {
+  it('when there are 0 seconds left', () => {
+    render(<Timer time={0} />, div);
+    expect(div.textContent).toEqual('00:00');
+  });
+
   it('when there are 5 seconds left', () => {
     render(<Timer time={5} />, div);
     expect(div.textContent).toEqual('00:05');
