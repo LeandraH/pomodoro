@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const padZeroes = (num) => (num < 10 ? `0${num}` : num);
 
@@ -7,3 +8,7 @@ const Timer = ({ time }) => (
 );
 
 export default Timer;
+
+Timer.propTypes = {
+  time: PropTypes.number.isRequired,
+};
