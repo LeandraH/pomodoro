@@ -23,15 +23,19 @@ it('shows the correct text when the timer is not running', () => {
 });
 
 it('shows the correct text when the timer is not running', () => {
-  render(<StartButton isTimerRunning={true} />, div);
+  render(<StartButton isTimerRunning />, div);
   expect(div.textContent).toEqual('Pause');
 });
 
 it('calls the correct funtion when clicked while the timer is not running', () => {
   const startTimer = jest.fn();
   const pauseTimer = jest.fn();
-  render(<StartButton startTimer={startTimer} pauseTimer={pauseTimer} isTimerRunning={false} />, div);
-  document.querySelector('.start-button').dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  render(<StartButton
+    startTimer={startTimer}
+    pauseTimer={pauseTimer}
+    isTimerRunning={false}
+  />, div);
+  document.querySelector('.start-button').dispatchEvent(new MouseEvent('click', { bubbles: true }));
   expect(startTimer).toHaveBeenCalled();
   expect(pauseTimer).not.toHaveBeenCalled();
 });
@@ -39,8 +43,8 @@ it('calls the correct funtion when clicked while the timer is not running', () =
 it('calls the correct funtion when clicked while the timer is running', () => {
   const startTimer = jest.fn();
   const pauseTimer = jest.fn();
-  render(<StartButton startTimer={startTimer} pauseTimer={pauseTimer} isTimerRunning={true} />, div);
-  document.querySelector('.start-button').dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  render(<StartButton startTimer={startTimer} pauseTimer={pauseTimer} isTimerRunning />, div);
+  document.querySelector('.start-button').dispatchEvent(new MouseEvent('click', { bubbles: true }));
   expect(startTimer).not.toHaveBeenCalled();
   expect(pauseTimer).toHaveBeenCalled();
 });
